@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Casa da Caneta</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/css/estilos.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<script src="/js/modernizr.custom.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+<body>
+
+	<header>
+		<h1 class="fL"><!--deixei h1 para usar o posicionamento ja definido no css-->
+    		<picture>
+    			<source style="height: 50px; margin-left: 10px;" srcset="/img/logo.png" media="(max-width: 600px)" alt="Casa das Canetas">
+    			<img style="height: 50px; margin-left: 10px;" src="/img/logoG.png" alt="Casa das Canetas">
+    		</picture>
+  		</h1>
+
+  		<input type="checkbox" id="control-nav" />
+  		<label for="control-nav" class="control-nav"></label>
+  		<label for="control-nav" class="control-nav-close"></label>
+
+			<nav class="fR">
+				<ul class="list-auto">
+					<li><a href="/inicio">HOME</a></li>
+		      		<li><a href="/produto/listaprodutos">PRODUTOS</a></li>
+		      		<li><a href="/sobre" >SOBRE</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN')"><a href="/pessoa/gerencia">GERENCIAR</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/pessoa/minhascompras">MINHAS COMPRAS</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/pessoa/carrinho">CARRINHO</a></li>
+		      		<li sec:authorize="!hasAnyRole('ADMIN','USER')"><a href="/pessoa/logar">LOGIN</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/logout">LOGOUT</a></li>
+		    	</ul>
+			</nav>
+		
+	</header>
+	
+
+
+	<section class="container">
+		<br>
+		<h1 style="margin-left: 10px">Olá este é seu carrinho de compras...</h1>
+		<br>
+		<table style="max-width: 1000px;">
+		  <thead>
+		    <tr>
+		      <th scope="col">Produto</th>
+		      <th scope="col">Preço</th>
+		      <th scope="col">Qtd_Estoque</th>
+		      <th scope="col">Imagem</th>
+		      <th scope="col">Remover do carrinho</th>
+		     </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="produto : ${todosOsProdutos}">
+		      <td th:text = "${produto.nome}"></td>
+		      <td th:text = "${produto.valor}"></td>
+		      <td th:text = "${produto.qtd_estoque}"></td>
+		      <td><a th:href="@{'/images/'+${produto.id}+.png}"><img style="max-width: 30px;max-height: 30px;" th:src="@{'/images/'+${produto.id}+.png}"></a></td>
+		      <td><a th:href="@{/pessoa/removedocarrinho/{id}(id = ${produto.id})}"><button class="butao-azul" style="width: 120px;height: 30px;">Remover</button></a></td>
+		      </tr>
+		    
+		  </tbody>
+		</table>
+		<div style="float: right; background-color: #DCDCDC; border: solid; border-width: 1px;">
+			<p style="float: left; padding-right: 25px;">Quantidade de produtos:</p>
+			<p style="float: right; padding-right: 5px;" th:text="${todosOsProdutos.size()}">
+			<p style="float: left; clear: both; ">Valor Total:</p>
+			<p style="float: right; padding-right: 5px;" th:text = "${valorTotal}"></p>
+		</div>
+		<div style="float: right; clear: both;">
+			<a href="/pessoa/limparcarrinho"><button class="butao-vermelho" style="width: 200px; height: 50px">Limpar Carrinho</button></a>
+			<a href="/compra/finalizacompra"><button class="butao-verde" style="width: 220px; height: 50px">Finalizar Compra</button></a>
+		</div>
+	</section>
+
+
+
+	<footer style="position: relative; margin-top: 200px;">
+			<h6 class="fL" style="margin-left: 5px; color: #DCDCDC;">
+					Casa das Canetas<br>
+					Desde 1900elavaibolinha<br>
+					@euquefiz 
+			</h6>
+			<div class="container fR">
+				<ul class="social">
+					<li><a href="http://facebook.com/casadascanetas">Facebook</a></li>
+					<li><a href="http://twitter.com/casadascanetas">Twitter</a></li>
+					<li><a href="http://plus.google.com/casadascanetas">Google+</a></li>
+				</ul>
+			</div>
+	</footer>
+
+</body>
+</html>

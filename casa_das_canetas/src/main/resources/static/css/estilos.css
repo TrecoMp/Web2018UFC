@@ -1,0 +1,519 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, hr, blockquote, pre,
+a, p, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin:0; padding:0; border:0; background:transparent;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #666;
+}
+thead {
+  border-top: 1px solid #a5a5a5;
+  border-bottom: 1px solid #a5a5a5;
+}
+
+th {
+  font-weight: normal;
+  text-align: left;
+}
+th, td {
+  padding: 0.1em 1em;
+}
+
+.mais-vendidos{
+  background-color: #dcdcf5
+
+}
+
+
+.container {
+	margin-right: auto;
+	margin-left: auto;
+	margin: 0 auto;
+	width: 940px;
+}
+
+body {
+	color: #333333;
+	font-family: Times, Times New Roman, serif;
+}
+
+header{
+  min-height: 60px;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-bottom: 1px solid #ccc;
+  background: #ECECEC;
+  z-index: 2;
+}
+
+header h1 {
+  padding: 10px 0 0 10px;
+}
+
+header h1 a {
+  color: #333;
+}
+
+header ul {
+  padding: 15px 10px 0 0;
+}
+
+header li {
+  border-left: 1px solid #ccc;
+}
+
+header li:first-child {
+  border: none;
+}
+
+header li a {
+  display: block;
+  padding: 0 10px;
+  color: #999;
+  font-size: 16px;
+  line-height: 30px;
+  text-decoration: none;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+
+header li a:hover {
+  color: #333;
+}
+
+.fL { float: left; }
+.fR { float: right; }
+
+.list-auto, .list-auto li { width: 100%; float: left; display: block; position: relative; }
+.list-auto, .list-auto li { width: auto; }
+
+/*basicamente esconde o botao*/
+input#control-nav {
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+/*essa parte é so para tratar o menu responsivo sem bootstrap - "aiaiai"(eu reclamando, 2018).
+#############################################################################################*/
+@media screen and (max-width: 767px) {
+  header nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 250px;
+    border-left: 1px solid #ccc;
+    background: #fff;
+    overflow-x: auto;
+    z-index: 2;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    -webkit-transform: translate(100%, 0);
+    -ms-transform: translate(100%, 0);
+    transform: translate(100%, 0);
+  }
+
+  header ul.list-auto {
+    padding: 0;
+  }
+
+  header ul.list-auto li {
+    width: 100%;
+    border: solid #ccc;
+    border-width: 0 0 1px;
+  }
+
+  header li a {
+    padding: 15px 10px;
+  }
+
+  header li a:hover {
+    background-color: #ccc;
+  }
+
+  .control-nav { 
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: block;
+    width: 30px;
+    padding: 5px 0;
+    border: solid #333;
+    border-width: 3px 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .control-nav:before {
+    content: "";
+    display: block;
+    height: 3px;
+    background: #333;
+  }
+
+  .control-nav-close {
+    position: fixed; 
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    z-index: 1;
+    background: rgba(0,0,0,0.4);
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    -webkit-transform: translate(100%, 0);
+    -ms-transform: translate(100%, 0);
+    transform: translate(100%, 0);
+  }
+
+  
+  input#control-nav {
+    visibility: visible;
+  }
+
+  input#control-nav:focus ~ .control-nav {
+    border-color: #000;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.3);
+  }
+
+  input#control-nav:focus ~ .control-nav:before {
+    background: #000;
+  }
+
+  input#control-nav:checked ~ nav,
+  input#control-nav:checked ~ .control-nav-close {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+/*fim do tratamento no menu responsivo
+######################################*/
+
+footer {
+	background-image: url(../img/fundo-rodape.png);
+	position: fixed;
+	clear: both;
+	padding: 20px 0;
+	min-height: 60px;
+	bottom: 0;
+  right: 0;
+	left: 0;
+
+}
+
+
+footer ul {
+	list-style-type: none;
+}
+.social{
+	position: absolute;
+	top: 12px;
+	right: 0;
+	margin-right: 10px;
+}
+
+.social li{
+	float: left;
+	margin-left: 25px; 
+}
+.social a {
+	
+	height: 32px;
+	width: 32px;
+	display: block;
+	text-indent: -9999px;
+}
+
+.social a[href*="facebook.com"] {
+	background-image: url(../img/facebook.png);
+}
+.social a[href*="twitter.com"] {
+	background-image: url(../img/twitter.png);
+}
+
+.social a[href*="plus.google.com"] {
+	background-image: url(../img/googleplus.png);
+}
+
+
+/*referentes ao formulario de contato
+#####################################*/
+
+.box-form{
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-color: black;
+    border-bottom: 5px;
+    position: relative;
+  
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+input[type=text], input[type=email],textarea {
+    width: 97%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    margin-top: 10px;
+    background-color: #708090;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #DCDCDC;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
+/*################################################################
+tratamento da galeria de produtos
+#################################################################*/
+
+.grid {
+  padding: 20px 20px 20px 20px;
+  max-width: 1500px;
+  margin: 0 auto;
+  list-style: none;
+  text-align: center;
+}
+
+.grid li {
+  display: inline-block;
+  width: 15%;
+  height: 15%;
+  margin: 0;
+  padding: 20px;
+  text-align: left;
+  position: relative;
+  margin-top: 50px; 
+}
+
+.grid figure {
+  margin: 0;
+  position: relative;
+}
+
+.grid figure img {
+  max-width: 100%;
+  display: block;
+  position: relative;
+}
+
+.grid figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background: #2c3f52;
+  color: #ed4e6e;
+  z-index: 10;
+}
+
+.grid figcaption h3 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+
+
+.grid figcaption p {
+  clear: both;
+  position: relative;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  display: inline-block;
+  background: #ed4e6e;
+  color: #fff;
+}
+
+.grid figcaption a{
+	clear: both;
+	position: relative;
+}
+/.cs-style-7 li:first-child { z-index: 10; }
+.cs-style-7 li:nth-child(2) { z-index: 9; }
+.cs-style-7 li:nth-child(3) { z-index: 8; }
+.cs-style-7 li:nth-child(4) { z-index: 7; }
+.cs-style-7 li:nth-child(5) { z-index: 6; }
+.cs-style-7 li:nth-child(6) { z-index: 5; }
+.cs-style-7 li:nth-child(7) { z-index: 4; }
+.cs-style-7 li:nth-child(8) { z-index: 3; }
+.cs-style-7 li:nth-child(9) { z-index: 2; }
+.cs-style-7 li:nth-child(10) { z-index: 1; }
+
+.cs-style-7 figure img {
+  z-index: 11;
+}
+
+.cs-style-7 figcaption {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: opacity 0.3s, height 0.3s, box-shadow 0.3s;
+  -moz-transition: opacity 0.3s, height 0.3s, box-shadow 0.3s;
+  transition: opacity 0.3s, height 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 0 0px #2c3f52;
+}
+
+.no-touch .cs-style-7 figure:hover figcaption,
+.cs-style-7 figure.cs-hover figcaption {
+  pointer-events: auto;
+  opacity: 1;
+  height: 140%;
+  box-shadow: 0 0 0 10px #2c3f52;
+}
+
+.cs-style-7 figcaption h3 {
+  margin-top: 95%;
+}
+
+.cs-style-7 figcaption h3,
+.cs-style-7 figcaption span,
+.cs-style-7 figcaption p {
+  opacity: 0;
+  -webkit-transition: opacity 0s;
+  -moz-transition: opacity 0s;
+  transition: opacity 0s;
+}
+
+.cs-style-7 figcaption p {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.no-touch .cs-style-7 figure:hover figcaption h3,
+.no-touch .cs-style-7 figure:hover figcaption span,
+.no-touch .cs-style-7 figure:hover figcaption p,
+.cs-style-7 figure.cs-hover figcaption h3,
+.cs-style-7 figure.cs-hover figcaption span,
+.cs-style-7 figure.cs-hover figcaption p {
+  -webkit-transition: opacity 0.3s 0.2s;
+  -moz-transition: opacity 0.3s 0.2s;
+  transition: opacity 0.3s 0.2s;
+  opacity: 1;
+}
+
+.botao{
+    margin-top: 10px;
+    background-color: #708090;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.botao:hover {
+    background-color: #DCDCDC;
+}
+
+@media screen and (max-width: 600px) {
+  header h1 {
+    font-size: 20px;
+    line-height: 40px;
+  }
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+  footer {
+    position: relative;
+  }
+  .grid {
+    padding: 10px 10px 100px 10px;
+  }
+  .grid li {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  .mais-vendidos{
+    min-height: 1000px;
+  }
+}
+
+a{
+	text-decoration: none;
+}
+
+button.butao-verde{
+	background-color: #4CAF50;
+	font-size: 24px;
+	border-radius: 8px;
+	width: 200px;
+	height: 100px;
+}
+
+button.butao-azul{
+	background-color: #008CBA;
+	font-size: 24px;
+	border-radius: 8px;
+	width: 200px;
+	height: 100px;
+	
+}
+button.butao-vermelho{
+	background-color: #f44336;
+	font-size: 24px;
+	border-radius: 8px;
+	width: 200px;
+	height: 100px;
+}
+button:hover{
+	opacity: 0.8;
+}

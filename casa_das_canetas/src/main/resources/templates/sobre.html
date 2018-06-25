@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Casa da Caneta</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/estilos.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+</head>
+<body>
+
+	<header>
+		<h1 class="fL"><!--deixei h1 para usar o posicionamento ja definido no css-->
+    		<picture>
+    			<source style="height: 50px; margin-left: 10px;" srcset="img/logo.png" media="(max-width: 600px)" alt="Casa das Canetas">
+    			<img style="height: 50px; margin-left: 10px;" src="img/logoG.png" alt="Casa das Canetas">
+    		</picture>
+  		</h1>
+
+  		<input type="checkbox" id="control-nav" />
+  		<label for="control-nav" class="control-nav"></label>
+  		<label for="control-nav" class="control-nav-close"></label>
+
+			<nav class="fR">
+				<ul class="list-auto">
+					<li><a href="/inicio">HOME</a></li>
+		      		<li><a href="/produto/listaprodutos">PRODUTOS</a></li>
+		      		<li><a href="/sobre" >SOBRE</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN')"><a href="/pessoa/gerencia">GERENCIAR</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/pessoa/minhascompras">MINHAS COMPRAS</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/pessoa/carrinho">CARRINHO</a></li>
+		      		<li sec:authorize="!hasAnyRole('ADMIN','USER')"><a href="/pessoa/logar">LOGIN</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/logout">LOGOUT</a></li>
+		    	</ul>
+			</nav>
+		
+	</header>
+	
+	<section>
+		<br>
+		<h1 style="margin-left: 10px">História da Casa das Canetas</h1>
+		<br>
+		<p style="margin-left: 10px; margin-right: 10px; text-align: justify; text-indent:4em">
+			Criada só Dells sabe quando no ano de mil novicentos e la vai bolinha, uma empresa pioneira na produção e comercialização de canetas dos mais diversos tipos, tendo de canetas incrivelmente caras que só o Bil Gates ou um Sheik Arabe pra comprar até aquelas de brinde que você ganha e só funciona duas vezes. O produtor do site estava com preguiça de inventar mais coisas sobre essa magnífica empresa então sabendo da simpatia do Professor pelo seu time do coração resolveu cantar o hino do Corinthians, Salve o Corinthians o campeão dos campeões Eternamente dentro dos nossos corações Salve o Corinthians de tradições e glórias mil Tu és orgulho Dos desportistas do Brasil Teu passado é uma bandeira Teu presente é uma lição Figuras entre os primeiros Do nosso esporte bretão Corinthians grande Sempre altaneiro És do Brasil O clube mais brasileiro Salve o Corinthians O campeão dos campeões Eternamente dentro dos nossos corações Salve o Corinthians de tradições e glórias mil Tu és orgulho Dos desportistas do Brasil. Após essa retumbante retórica voltamos a falar mais sobre a Casa das Canetas, só que não.
+		</p>
+
+	</section>
+
+	<footer>
+			<h6 class="fL" style="margin-left: 5px; color: #DCDCDC;">
+					Casa das Canetas<br>
+					Desde 1900elavaibolinha<br>
+					@euquefiz 
+			</h6>
+			<div class="container fR">
+				<ul class="social">
+					<li><a href="http://facebook.com/casadascanetas">Facebook</a></li>
+					<li><a href="http://twitter.com/casadascanetas">Twitter</a></li>
+					<li><a href="http://plus.google.com/casadascanetas">Google+</a></li>
+				</ul>
+			</div>
+	</footer>
+</body>
+</html>
