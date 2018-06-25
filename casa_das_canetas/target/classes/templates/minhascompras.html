@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Casa da Caneta</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/css/estilos.css">
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<script src="/js/modernizr.custom.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	
+</head>
+<body>
+
+	<header>
+		<h1 class="fL"><!--deixei h1 para usar o posicionamento ja definido no css-->
+    		<picture>
+    			<source style="height: 50px; margin-left: 10px;" srcset="/img/logo.png" media="(max-width: 600px)" alt="Casa das Canetas">
+    			<img style="height: 50px; margin-left: 10px;" src="/img/logoG.png" alt="Casa das Canetas">
+    		</picture>
+  		</h1>
+
+  		<input type="checkbox" id="control-nav" />
+  		<label for="control-nav" class="control-nav"></label>
+  		<label for="control-nav" class="control-nav-close"></label>
+
+			<nav class="fR">
+				<ul class="list-auto">
+					<li><a href="/inicio">HOME</a></li>
+		      		<li><a href="/produto/listaprodutos">PRODUTOS</a></li>
+		      		<li><a href="/sobre" >SOBRE</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN')"><a href="/pessoa/gerencia">GERENCIAR</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/pessoa/minhascompras">MINHAS COMPRAS</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/pessoa/carrinho">CARRINHO</a></li>
+		      		<li sec:authorize="!hasAnyRole('ADMIN','USER')"><a href="/pessoa/logar">LOGIN</a></li>
+		      		<li sec:authorize="hasAnyRole('ADMIN','USER')"><a href="/logout">LOGOUT</a></li>
+		    	</ul>
+			</nav>
+		
+	</header>
+	
+
+
+	<section class="container">
+		<br>
+		<h1 style="margin-left: 10px">Histórico de Compras</h1>
+		<br>
+			<div  th:each="compra : ${todasAsCompras}">
+
+				<table>
+		  			<thead style="background-color: #DCDCDC;">
+					    <tr>
+					      <th scope="col">Data</th>
+					      <th scope="col">Condição</th>
+					      <th scope="col">Valor</th>
+					     </tr>
+					</thead>
+			  		<tbody>
+			   			<tr>
+					      <td th:text = "${compra.data}"></td>
+					      <td th:text = "${compra.estado}"></td>
+					      <td th:text = "${compra.valor}"></td>
+			   	 		</tr>
+			  		</tbody>
+				</table>
+				<div>
+					<table>
+						<thead>
+		    				<tr>
+						      <td scope="col">Produtos</td>
+						      <td scope="col">Valor</td>
+						      <td scope="col">Imagem</td>
+						    </tr>
+		 				 </thead>
+						 <tbody>	
+							<tr th:each="produto : ${compra.itens}">
+								<td th:text ="${produto.nome}"></td>
+								<td th:text ="${produto.valor}"></td>
+								<td><a th:href="@{'/images/'+${produto.id}+.png}"><img style="max-width: 30px;max-height: 30px;" th:src="@{'/images/'+${produto.id}+.png}"></a></td>
+						  	</tr>
+						  </tbody>
+					</table>
+				</div>
+		</div>
+	</section>
+
+
+
+	<footer style="position: relative; margin-top: 200px;">
+			<h6 class="fL" style="margin-left: 5px; color: #DCDCDC;">
+					Casa das Canetas<br>
+					Desde 1900elavaibolinha<br>
+					@euquefiz 
+			</h6>
+			<div class="container fR">
+				<ul class="social">
+					<li><a href="http://facebook.com/casadascanetas">Facebook</a></li>
+					<li><a href="http://twitter.com/casadascanetas">Twitter</a></li>
+					<li><a href="http://plus.google.com/casadascanetas">Google+</a></li>
+				</ul>
+			</div>
+	</footer>
+
+</body>
+</html>
