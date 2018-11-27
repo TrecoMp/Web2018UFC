@@ -9,6 +9,13 @@ Necessário:
 - Springboot;
 - Mysql (lembrar de fazer alterações na classe connection, para ficar de acordo com seu BD).
 
+
 Obs: 
 - A pasta img contém imagens que foram adicionadas ao projeto, estão linkadas com dados do banco, mas como para usar será refatorado é necessário apaga-las ou reinseri-las juntamente com os dados do banco.
 
+- Adicionar no projeto Spring:
+  - mysql
+  - thymeleaf
+  - security
+  - JPA
+  - WEB
